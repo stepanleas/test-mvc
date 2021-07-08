@@ -91,12 +91,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        // Verify if the user is authorized
-        $redirect = $this->redirectUser();
-        if (!is_bool($redirect)) {
-            die;
-        }
-
         return $this->save($request->getBody());
     }
 
@@ -208,12 +202,6 @@ class TaskController extends Controller
      */
     public function create()
     {
-        // Verify if the user is authorized
-        $redirect = $this->redirectUser();
-        if (!is_bool($redirect)) {
-            die;
-        }
-
         return $this->render('tasks/store');
     }
 

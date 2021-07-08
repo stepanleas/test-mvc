@@ -1,0 +1,15 @@
+textarea {
+    resize: none;
+}
+
+.task-area {
+    min-height: 124px;
+}
+
+.icon-completed-task {
+    color: green;
+}
+
+.tasks-table th:not(:last-child) {
+    cursor: pointer;
+}

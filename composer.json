@@ -1,0 +1,11 @@
+{
+    "name": "user/test-mvc",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {
+      "ext-json": "*"
+    }
+}

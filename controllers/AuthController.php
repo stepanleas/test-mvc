@@ -14,7 +14,7 @@ use app\repositories\UserRepository;
 
 class AuthController extends Controller
 {
-    private UserRepository $userRepository;
+    private $userRepository;
 
     public function __construct()
     {

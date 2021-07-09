@@ -15,6 +15,11 @@ class TaskController extends Controller
 {
     private $taskRepository;
 
+    private $allowedColumns = [
+        'id','user_name','user_email',
+        'description','status'
+    ];
+
     public function __construct()
     {
         $this->taskRepository = new TaskRepository('tasks');
@@ -64,6 +69,11 @@ class TaskController extends Controller
             if ($column === 'status') {
                 $orderColumn = ['completed','admin_edited'];
             }
+        }
+
+        // Verify that the column name is in the allowed columns array
+        if (!in_array($orderColumn, $this->allowedColumns)) {
+            header('Location: /');
         }
 
         // Get a list of tasks

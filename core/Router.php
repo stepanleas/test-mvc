@@ -4,7 +4,7 @@ namespace app\core;
 
 class Router
 {
-    public array $routes;
+    public $routes;
     public $request;
     public $response;
 

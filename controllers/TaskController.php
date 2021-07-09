@@ -13,7 +13,7 @@ use app\repositories\TaskRepository;
 
 class TaskController extends Controller
 {
-    private TaskRepository $taskRepository;
+    private $taskRepository;
 
     public function __construct()
     {

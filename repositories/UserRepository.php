@@ -15,15 +15,16 @@ class UserRepository extends BaseRepository
     /**
      * Find the user by his name
      * @param $name
+     * @param array $fields
      * @return mixed
      */
-    public function findUserByName($name)
+    public function findUserByName($name, $fields = [])
     {
         return Application::$app->db
             ->table($this->tableName)
             ->where([
                 'name' => $name
             ])
-            ->first();
+            ->first($fields);
     }
 }

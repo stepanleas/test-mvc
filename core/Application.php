@@ -4,14 +4,14 @@ namespace app\core;
 
 class Application
 {
-    public Router $router;
-    public Request $request;
-    public Response $response;
+    public $router;
+    public $request;
+    public $response;
 
-    public Controller $controller;
-    public Database $db;
+    public $controller;
+    public $db;
 
-    public static Application $app;
+    public static $app;
     public static $ROOT_DIR;
 
     public function __construct()

@@ -84,7 +84,10 @@
                 switch (data.type) {
                     case 'danger':
                         alert(data.message);
-                        break;
+                            break;
+                    case 'redirect':
+                        alert(data.message);
+                            break;
                     default:
                         window.location.replace('/');
                             break;

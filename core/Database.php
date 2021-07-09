@@ -3,7 +3,7 @@
 namespace app\core;
 use PDO;
 
-require_once('../config/db.php');
+require_once('./config/db.php');
 
 class Database
 {

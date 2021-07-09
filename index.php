@@ -1,6 +1,6 @@
 <?php
 
-require_once('../vendor/autoload.php');
+require_once('./vendor/autoload.php');
 
 use app\controllers\AuthController;
 use app\controllers\TaskController;

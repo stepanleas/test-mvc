@@ -58,6 +58,7 @@ class AuthController extends Controller
         // Search the user by providing his name
         $user = $this->userRepository
             ->findUserByName($name);
+
         // If an user with such name doesn't exists, return an error message
         if (!$user) {
             return Response::sendJsonMessage('An user with such name doesn\'t exist!', 'danger');
@@ -102,11 +103,20 @@ class AuthController extends Controller
         // Encrypt the password
         $password = Password::encrypt($validatePassword);
 
+        // Verify if there is an user with such name
+        $findUser = $this->userRepository
+            ->findUserByName($name, ['name']);
+
+        if ($findUser['name'] == $name) {
+            return Response::sendJsonMessage('An user with such name already exists!', 'danger');
+        }
+
         // Create an instance of the user
         $user = new User([
             'name' => $name,
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'role' => 'user'
         ]);
 
         try {

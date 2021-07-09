@@ -104,11 +104,10 @@ class TaskController extends Controller
         // Verify if the user is authorized
         $redirect = $this->redirectUser();
         if (!is_bool($redirect)) {
-            die;
+            return $redirect;
         }
 
         $body = $request->getBody();
-        $body['admin_edited'] = 1;
         return $this->save($body);
     }
 
@@ -132,7 +131,21 @@ class TaskController extends Controller
 
         $taskId = $body['id'] ?? null;
         $completed = $body['completed'] ?? null;
-        $admin_edited = $body['admin_edited'] ?? null;
+        $admin_edited = null;
+
+        /**
+         * Verify if the task text was updated,
+         * if it was, then set a sign that the
+         * task was updated
+         */
+        if (!empty($taskId)) {
+            $findTask = $this->taskRepository
+                ->find($taskId, ['description']);
+
+            if ($findTask['description'] != $description) {
+                $admin_edited = 1;
+            }
+        }
 
         // Verify that the completed status is equal to 1
         if (!is_null($completed) && !in_array($completed, [0,1])) {
@@ -181,7 +194,7 @@ class TaskController extends Controller
         // Verify if the user is authorized
         $redirect = $this->redirectUser();
         if (!is_bool($redirect)) {
-            die;
+            return $redirect;
         }
 
         $body = $request->getBody();
@@ -215,7 +228,7 @@ class TaskController extends Controller
         // Verify if the user is authorized
         $redirect = $this->redirectUser();
         if (!is_bool($redirect)) {
-            die;
+            return $redirect;
         }
 
         $body = $request->getBody();
@@ -248,7 +261,7 @@ class TaskController extends Controller
             if (Application::$app->request->method() === 'GET') {
                 header('Location: /');
             }
-            return Response::sendJsonMessage('The user is not authorized', 'redirect');
+            return Response::sendJsonMessage('You are not logged in. Please refresh the page and login', 'redirect');
         }
         return false;
     }

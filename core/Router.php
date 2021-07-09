@@ -5,8 +5,8 @@ namespace app\core;
 class Router
 {
     public array $routes;
-    public Request $request;
-    public Response $response;
+    public $request;
+    public $response;
 
     public function __construct(Request $request, Response $response)
     {

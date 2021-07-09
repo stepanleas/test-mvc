@@ -6,7 +6,7 @@ use app\core\Application;
 
 class BaseRepository
 {
-    protected string $tableName;
+    protected $tableName;
 
     public function __construct($tableName)
     {
